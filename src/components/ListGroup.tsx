@@ -1,42 +1,23 @@
-//import { Fragment } from "react";
-
 function ListGroup() {
-  //class is a reserved word in React and Typescript => className
+  // Rendering lists dynamically
+  const items = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan"];
+  // we don't have for or while loop in React we use javascript functions and methods like map
+
+  // Warning: Each child in a list should have a unique "key" prop.
+  // React needs Key prop to track our items. if we delete an element or update it React will know which item to delete or update
+  // All the time keys are ids.
+
+  //<ul> and <ol> must only directly contain <li>, <script> or <template> elements
+  //we use index as a key to solve this warning
   return (
-    //In React we can not return more than one Element
-    //<h1>List</h1>// React.CreateElement('h1')
-    // Solution One: Wrap the 2 or more Element in One Element Example <div></div>
-    // but using this solution we will add an unnecessary Element.
-    /*<div>
-      <h1>List</h1>
-      <ul className="list-group">
-        <li className="list-group-item">An item</li>
-        <li className="list-group-item">A second item</li>
-        <li className="list-group-item">A third item</li>
-        <li className="list-group-item">A fourth item</li>
-        <li className="list-group-item">And a fifth one</li>
-      </ul>
-    </div>*/
-    // Solution Two: Use Fragment. no other Element added
-    /*<Fragment>
-      <h1>List</h1>
-      <ul className="list-group">
-        <li className="list-group-item">An item</li>
-        <li className="list-group-item">A second item</li>
-        <li className="list-group-item">A third item</li>
-        <li className="list-group-item">A fourth item</li>
-        <li className="list-group-item">And a fifth one</li>
-      </ul>
-    </Fragment>*/
-    // Short Solution to use Fragment <></>
     <>
       <h1>List</h1>
       <ul className="list-group">
-        <li className="list-group-item">An item</li>
-        <li className="list-group-item">A second item</li>
-        <li className="list-group-item">A third item</li>
-        <li className="list-group-item">A fourth item</li>
-        <li className="list-group-item">And a fifth one</li>
+        {items.map((item, index) => (
+          <li key={index} className="list-group-item">
+            {item}
+          </li>
+        ))}
       </ul>
     </>
   );
