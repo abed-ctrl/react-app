@@ -1,44 +1,35 @@
+import { MouseEvent } from "react";
+
 function ListGroup() {
-  // Conditional Rendering
+  // Handling Events
   let items = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan", "Meknes"];
-  items = [];
 
-  //3.
-  //const message = items.length === 0 ? <p>No item found.</p> : null;
+  // In React Each Element have a property onClick to handle Click Event on Element.
+  // Print Item Clicked to the Console. using item or items[index]
+  // To see the event class we add event to the arrow function param and log it to console
 
-  //4. we use function if we want to pass a parameter.
-  // () => {} ARROW FUNCTION
-  /*const getMessage = () => {
-    return items.length === 0 ? <p>No item found.</p> : null;
-  };*/
-
-  //1.
-  /*if (items.length == 0)
-    return (
-      <>
-        <h1>List</h1>
-        <p>No item found</p>
-      </>
-    );*/
-
-  // use this code is not a correct way to programme. we should avoid repetition of code.
-  // we don't have an if statement in JSX only html and react components and expressions allowed.
+  // we use typescript we should give type of event parameter.
+  // type annotation in typeScript => event: MouseEvent
+  // with typescript we get auto-completion and type safety
+  // Event Handler
+  const handleClick = (event: MouseEvent) => console.log(event);
 
   return (
     <>
       <h1>List</h1>
-      {/* Some time this logic will be more complex in a project */}
-      {/* 2. */}
-      {/* items.length === 0 ? <p>No item found.</p> : null */}
-      {/* this why we should use a variable that return the expression */}
-      {/* message */}
-      {/* getMessage() */}
-      {/* 5. avoid the second part of the conditional statement (Null) */}
-      {/* in javascript => true && expression return expression : example : true && 'ali' => 'ali' */}
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
-          <li key={index} className="list-group-item">
+          <li
+            className="list-group-item"
+            key={index}
+            //onClick={() => console.log(item, index)}
+            // this logic will be more complex this is why we use function to handle event
+            //onClick={(event) => console.log(event)}
+            // we don't call the function handleClick() we just pass a reference.
+            // so this function will be called later on run time.
+            onClick={handleClick}
+          >
             {item}
           </li>
         ))}
