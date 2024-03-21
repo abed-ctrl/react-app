@@ -1,17 +1,41 @@
 function ListGroup() {
-  // Rendering lists dynamically
-  const items = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan"];
-  // we don't have for or while loop in React we use javascript functions and methods like map
+  // Conditional Rendering
+  let items = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan", "Meknes"];
+  items = [];
 
-  // Warning: Each child in a list should have a unique "key" prop.
-  // React needs Key prop to track our items. if we delete an element or update it React will know which item to delete or update
-  // All the time keys are ids.
+  //3.
+  //const message = items.length === 0 ? <p>No item found.</p> : null;
 
-  //<ul> and <ol> must only directly contain <li>, <script> or <template> elements
-  //we use index as a key to solve this warning
+  //4. we use function if we want to pass a parameter.
+  // () => {} ARROW FUNCTION
+  /*const getMessage = () => {
+    return items.length === 0 ? <p>No item found.</p> : null;
+  };*/
+
+  //1.
+  /*if (items.length == 0)
+    return (
+      <>
+        <h1>List</h1>
+        <p>No item found</p>
+      </>
+    );*/
+
+  // use this code is not a correct way to programme. we should avoid repetition of code.
+  // we don't have an if statement in JSX only html and react components and expressions allowed.
+
   return (
     <>
       <h1>List</h1>
+      {/* Some time this logic will be more complex in a project */}
+      {/* 2. */}
+      {/* items.length === 0 ? <p>No item found.</p> : null */}
+      {/* this why we should use a variable that return the expression */}
+      {/* message */}
+      {/* getMessage() */}
+      {/* 5. avoid the second part of the conditional statement (Null) */}
+      {/* in javascript => true && expression return expression : example : true && 'ali' => 'ali' */}
+      {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
           <li key={index} className="list-group-item">
