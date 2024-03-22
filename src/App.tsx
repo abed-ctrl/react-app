@@ -4,10 +4,17 @@ function App() {
   let cities = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan", "Meknes"];
   let fruits = ["Orange", "Apple", "Pineapple", "Banana"];
 
+  const handleSelectedItem = (item: string) => {
+    console.log(item);
+  };
+
   return (
     <div>
-      <ListGroup items={cities} heading="Cities" />
-      <ListGroup items={fruits} heading="Fruits" />
+      <ListGroup
+        items={cities}
+        heading="Cities"
+        onSelectedItem={handleSelectedItem}
+      />
     </div>
   );
 }

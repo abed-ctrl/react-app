@@ -1,20 +1,18 @@
 import { useState } from "react";
 
-// we want to pass an object to the component
-// { items: [], heading: string}
-// this is why we use Interface in typScript. by convention we use Props as the name of the interface.
-// but some people prefer to prefix it by the name of the component. eg ListGroupProps
+// we want to notify the parent (App) that an element is selected
 interface Props {
   items: string[];
   heading: string;
+  // (item:string) => void
+  onSelectedItem: (item: string) => void;
 }
 
-/* props: Props => to avoid the repetetion of props we use*/
-function ListGroup({ items, heading }: Props) {
-  //
-  // Passing Data via Props
-  // to make this component reusable with other data not just cities like here we use Props(Proprieties)
-  // we use props to accept input
+function ListGroup({ items, heading, onSelectedItem }: Props) {
+  // Passing Function via Props
+  // We can pass data and functions to a component using props. Functions are used to
+  // notify the parent (consumer) of a component about certain events that occur in the
+  // component, such as an item being clicked or selected.
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
@@ -34,6 +32,8 @@ function ListGroup({ items, heading }: Props) {
             key={index}
             onClick={() => {
               setSelectedIndex(index);
+              // when we select an item the App Component get notify and printing the name of selected item
+              onSelectedItem(item);
             }}
           >
             {item}
