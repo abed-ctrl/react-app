@@ -1,20 +1,18 @@
-import ListGroup from "./components/ListGroup";
+// Passing children
+
+import Alert from "./components/Alert";
 
 function App() {
-  let cities = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan", "Meknes"];
-  let fruits = ["Orange", "Apple", "Pineapple", "Banana"];
-
-  const handleSelectedItem = (item: string) => {
-    console.log(item);
-  };
-
   return (
     <div>
-      <ListGroup
-        items={cities}
-        heading="Cities"
-        onSelectedItem={handleSelectedItem}
-      />
+      {/* Passing the text with this way is not a correct way. if we need to pass html or a long text. we want to pass it as a children.*/}
+      {/* <Alert text="Hello Cleverali" / > */}
+      {/* this what we want*/}
+      {/* <Alert>Hello world</Alert> */}
+      {/* if we want to add html to the component we should change the type of children Prop to ReactNode. */}
+      <Alert alertType="alert-success">
+        Hello <strong>Cleverali</strong>
+      </Alert>
     </div>
   );
 }
