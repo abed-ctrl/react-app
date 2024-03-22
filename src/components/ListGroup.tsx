@@ -1,27 +1,26 @@
 import { useState } from "react";
 
-function ListGroup() {
-  // Managing state
-  let items = ["Casablanca", "Oued-Zem", "Essaouira", "Tantan", "Meknes"];
+// we want to pass an object to the component
+// { items: [], heading: string}
+// this is why we use Interface in typScript. by convention we use Props as the name of the interface.
+// but some people prefer to prefix it by the name of the component. eg ListGroupProps
+interface Props {
+  items: string[];
+  heading: string;
+}
 
-  //let selectedIndex = 0;
-  // we want to add active class dynamically to <li> Element went user click on it
+/* props: Props => to avoid the repetetion of props we use*/
+function ListGroup({ items, heading }: Props) {
+  //
+  // Passing Data via Props
+  // to make this component reusable with other data not just cities like here we use Props(Proprieties)
+  // we use props to accept input
 
-  // Hook = is a function that allows us to tap into built-in features in React.
-  // we never touch the DOM. We just update the state and React Update DOM.
-  //const arr = useState(-1);
-  //arr[0]; //variable (selectedIndex)
-  //arr[1]; //updater function
-
-  // this a React convention
-  // we have now a state variable called selectedIndex and a updater function called setSelectedIndex
   const [selectedIndex, setSelectedIndex] = useState(-1);
-
-  // every component will have his own state
 
   return (
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
@@ -33,10 +32,6 @@ function ListGroup() {
                 : "list-group-item"
             }
             key={index}
-            // we cant use here a local variable selectedIndex
-            // we should tell React that this component is going to have data or state that may change over time
-            // this is why we should use useState() built-in function.
-            // onClick={() => (selectedIndex = index)}
             onClick={() => {
               setSelectedIndex(index);
             }}
