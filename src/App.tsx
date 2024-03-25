@@ -1,18 +1,23 @@
-// Passing children
+// 04 - Styling Component => Vanilla or Plain CSS
 
-import Alert from "./components/Alert";
+// when we create a folder for our component ListGroup the import come a little bit ugly
+//import ListGroup from "./components/ListGroup/ListGroup";
+// this is why we add a index.ts to the component folder to remove second ListGroup from import
+// by default if we don't supply a file and just adding a folder TS look for a file called index.ts
+import ListGroup from "./components/ListGroup";
 
 function App() {
+  const heading = "Cities";
+  const items = ["Casablanca", "Oued-Zem", "Essaouira"];
+  const handleOnSelectedItem = (item: string) => console.log(item);
+
   return (
     <div>
-      {/* Passing the text with this way is not a correct way. if we need to pass html or a long text. we want to pass it as a children.*/}
-      {/* <Alert text="Hello Cleverali" / > */}
-      {/* this what we want*/}
-      {/* <Alert>Hello world</Alert> */}
-      {/* if we want to add html to the component we should change the type of children Prop to ReactNode. */}
-      <Alert alertType="alert-success">
-        Hello <strong>Cleverali</strong>
-      </Alert>
+      <ListGroup
+        heading={heading}
+        items={items}
+        onSelectedItem={handleOnSelectedItem}
+      />
     </div>
   );
 }

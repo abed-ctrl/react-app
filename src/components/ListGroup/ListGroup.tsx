@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./ListGroup.css";
 
 interface Props {
   items: string[];
@@ -7,15 +8,13 @@ interface Props {
 }
 
 function ListGroup({ items, heading, onSelectedItem }: Props) {
-  // Passing Children
-
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     <>
       <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
-      <ul className="list-group">
+      <ol className="list-group">
         {items.map((item, index) => (
           <li
             className={
@@ -32,7 +31,7 @@ function ListGroup({ items, heading, onSelectedItem }: Props) {
             {item}
           </li>
         ))}
-      </ul>
+      </ol>
     </>
   );
 }
