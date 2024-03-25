@@ -19,8 +19,12 @@ body {
     letter-spacing: -0.25px;
 }
 
-ol {
+.listGroup {
     padding-left: 50px;
+}
+
+.container {
+    background-color: #ddd;
 }
 
 li {
@@ -49,10 +53,10 @@ strong {
     color: #292929;
 }
 
-ol.list-group li:nth-child(odd)::before {
+ol.listGroup li:nth-child(odd)::before {
     border-color: #0BAD02;
 }
 
-ol.list-group li:nth-child(even)::before {
+ol.listGroup li:nth-child(even)::before {
     border-color: #2378D5;
 }

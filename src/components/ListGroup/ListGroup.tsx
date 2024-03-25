@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./ListGroup.css";
+import styles from "./ListGroup.module.css";
 
 interface Props {
   items: string[];
@@ -14,7 +14,10 @@ function ListGroup({ items, heading, onSelectedItem }: Props) {
     <>
       <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
-      <ol className="list-group">
+      {/* we can access to list-group like this styles.list-group because of - is not accepted in js this why we use styles['list-group']*/}
+      {/* or we can use CamelCasing in css file*/}
+      {/* we use [ ] and join method to add many classes*/}
+      <ol className={[styles.listGroup, styles.container].join(" ")}>
         {items.map((item, index) => (
           <li
             className={

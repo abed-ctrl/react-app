@@ -1,10 +1,13 @@
-// 04 - Styling Component => Vanilla or Plain CSS
+// 04 - Styling Component => CSS Modules
 
-// when we create a folder for our component ListGroup the import come a little bit ugly
-//import ListGroup from "./components/ListGroup/ListGroup";
-// this is why we add a index.ts to the component folder to remove second ListGroup from import
-// by default if we don't supply a file and just adding a folder TS look for a file called index.ts
+// if we have two class with the same name, the last one will take effect.
+// example .list-group in ListGroup.css and App.css. the .list-group of App.css will add styles to .list-group of ListGroup.css too.
+// this clashes that CSS Modules try to solve
+// CSS Module is a CSS file in witch all class names are scooped locally just like a JS Module.
+// to use module we add module to all css files of components EG: name.module.css
+// in the import we will import styles object from name.module.css. styles object contain all the styles in css file
 import ListGroup from "./components/ListGroup";
+import "./App.css";
 
 function App() {
   const heading = "Cities";
