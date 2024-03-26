@@ -1,11 +1,12 @@
-// 04 - Styling Component => CSS Modules
+// 04 - Styling Component => CSS-IN-JS
 
-// if we have two class with the same name, the last one will take effect.
-// example .list-group in ListGroup.css and App.css. the .list-group of App.css will add styles to .list-group of ListGroup.css too.
-// this clashes that CSS Modules try to solve
-// CSS Module is a CSS file in witch all class names are scooped locally just like a JS Module.
-// to use module we add module to all css files of components EG: name.module.css
-// in the import we will import styles object from name.module.css. styles object contain all the styles in css file
+// Another approach for styling our component called CSS-IN-JS.
+// With CSS-in-JS, we define all the styles for a component alongside its code. Like CSS
+// modules, this provides scoping for CSS classes and eliminates conflicts. It also makes it
+// easier for us to change or delete a component without affecting other components.
+// and it's easy to style based on props/state.
+// this is some libraries that implement this concept: - styled component - emotion - polished
+
 import ListGroup from "./components/ListGroup";
 import "./App.css";
 
