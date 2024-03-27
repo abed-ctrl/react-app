@@ -1,13 +1,10 @@
 import { useState } from "react";
-import "./ListGroup.css";
 import styled from "styled-components";
 
-// this will return a React component List styled
 const List = styled.ol`
   padding-left: 50px;
 `;
 
-// we can style a component based on state variable. eg: selectedIndex
 interface ListItemProps {
   active: boolean;
 }
@@ -20,6 +17,7 @@ const ListItem = styled.li<ListItemProps>`
   font-size: 16px;
   line-height: 20px;
   background: ${(props) => (props.active ? "#0d6efd" : "none")};
+  cursor: pointer;
 
   &:before {
     content: '';
@@ -56,11 +54,12 @@ function ListGroup({ items, heading, onSelectedItem }: Props) {
 
   return (
     <>
-      <h1>{heading}</h1>
+      {/* All HTML Element have style prop */}
+      {/* This css method is a bad practice*/}
+      <h1 style={{ fontSize: "60px", backgroundColor: "blue", color: "white" }}>
+        {heading}
+      </h1>
       {items.length === 0 && <p>No item found</p>}
-      {/* we can access to list-group like this styles.list-group because of - is not accepted in js this why we use styles['list-group']*/}
-      {/* or we can use CamelCasing in css file*/}
-      {/* we use [ ] and join method to add many classes*/}
       <List>
         {items.map((item, index) => (
           <ListItem
