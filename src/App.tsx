@@ -1,7 +1,13 @@
-// 04 - Styling Component => Inline Styles
+// 04 - Styling Component => Popular UI LIBRARIES
 
-// Although inline styles are easy to apply, they can make our code difficult to maintain
-// over time and should only be used as a last resort.
+// There are several UI libraries available that can assist us in quickly building beautiful
+// and modern applications. Some popular options include Bootstrap, Material UI,
+// TailwindCSS, DaisyUI, ChakraUI, and more.
+// - Bootstrap
+// - Material UI : google material designs is the design language used in google product
+// - Tailwind CSS: a utility-first css framework
+//          - Daisy UI : instead of using utility class we can use component like "alert"
+//          - Chakra UI : it's similar to Material UI. React component library that's build in top of tailwind
 
 import ListGroup from "./components/ListGroup";
 import "./App.css";
@@ -11,8 +17,6 @@ function App() {
   const items = ["Casablanca", "Oued-Zem", "Essaouira"];
   const handleOnSelectedItem = (item: string) => console.log(item);
 
-  // in this case all the complexity around the ListGroup Component is hidden behind a well defined Interface
-  // the consumer of this component doesn't care what's behind this interface. doesn't care if we put everything in one file or multiple files
   return (
     <div>
       <ListGroup

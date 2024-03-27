@@ -54,11 +54,7 @@ function ListGroup({ items, heading, onSelectedItem }: Props) {
 
   return (
     <>
-      {/* All HTML Element have style prop */}
-      {/* This css method is a bad practice*/}
-      <h1 style={{ fontSize: "60px", backgroundColor: "blue", color: "white" }}>
-        {heading}
-      </h1>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <List>
         {items.map((item, index) => (
