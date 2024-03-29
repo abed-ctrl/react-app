@@ -1,15 +1,19 @@
-// 04 - Styling Component => Adding Icons
+// 05 - Managing Component State => Understanding the State Hook
+// using State Hook we can add a state to our Component
 
-// We can add icons to our applications using the react-icons library.
-// npm i react-icons@4.7.1
-
-import { BsCalendarFill } from "react-icons/bs";
-import "./App.css";
+import { useState } from "react";
 
 function App() {
+  // 1- React update state asynchronously
+
+  const [isVisible, setVisibility] = useState(false);
+  const handleClick = () => {
+    setVisibility(true);
+  };
+
   return (
     <div>
-      <BsCalendarFill size="60px" color="blue" />
+      <button onClick={handleClick}>Show</button>
     </div>
   );
 }
