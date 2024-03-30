@@ -1,8 +1,8 @@
-// if we declare a variable out of our component and use it inside it. our component is not pure.
-// let count = 0;
+let count = 0;
 
 const Message = () => {
-  let count = 0;
+  // to see how mush time React render the component
+  console.log("Message called", count);
   count++;
   return <div>Message {count}</div>;
 };

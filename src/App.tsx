@@ -1,31 +1,27 @@
-// 05 - Managing Component State => Keeping Components Pure
-// A pure function is one that always returns the same result given the same input.
-// Pure functions should not modify objects outside of the function.
-// example : const result = myFunc(1); if this function return 'a' it should return a every time is called
-// if it's return 'b' or 'c'. it's not called a Pure function
-// React is designed around this concept
-// React expects our function components to be pure. A pure component should always
-// return the same JSX given the same input.
-//
-// props      -> { Component }    -> JSX
-// same props                        same JSX
-// this is for performance reasons.
-// React will skip re-rendering if the inputs of the component haven't change.
-//
-// To keep our components pure, we should avoid making changes during the render phase.
+// 05 - Managing Component State => Understanding the Strict Mode
+// Strict mode helps us catch potential problems such as impure components.
+// Starting from React 18, it is enabled by default. It renders our components twice in development
+// mode to detect any potential side effects.
+// the Strict mode is inside main.tsx => <React.StrictMode>
+// this how react render Message App
+// <Message />  Message 1 the first render for detecting and reporting potential issues with our code
+//              Message 2 the second is to render the user interface
+// <Message />  Message 3
+//              Message 4
+// <Message />  Message 5
+//              Message 6
+
+// this is why we get : Message 2 Message 4 Message 6
 
 import Message from "./Message";
 
 function App() {
   return (
     <div>
-      {/* here we didn't use the count variable in Message. result 0 0 0 */}
-      {/* if we increment the count variable count++ inside our component we get a different results every time we render it. result 2 4 6 */}
-      {/* To keep our components pure, we should avoid making changes during the render phase. */}
-      {/* if we declare the count variable inside our component it will be pure. */}
       <Message />
-      <Message />
-      <Message />
+      {/* we will remove the 2 last Message to see better the effect of strict mode */}
+      {/* <Message />
+      <Message /> */}
     </div>
   );
 }
