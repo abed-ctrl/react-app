@@ -1,29 +1,44 @@
-// 05 - Managing Component State => Understanding the State Hook
-// using State Hook we can add a state to our Component
+// 05 - Managing Component State => Choosing the State Structure
 
 import { useState } from "react";
 
 function App() {
-  // 3- Use hooks at the top level of your Component
-  // we use State Hook to declare and initialize to Booleans Variables.
-  // these name (isVisible, isApproved) are local identifiers in this function.
-  // React is unaware of them .
-  // when we use State Hook we tell react we want to store 2 Booleans values.
-  // React will store somewhere and most likely like this [false, true]
-  // next time we re-render this component. React will grab false and assign it to isVisible and true to isApproved.
-  // this is why we can't use State Hook inside if statement or for loops or nested functions
-  // React keeps the state in memory as longer is the component is visible in the screen.
-  const [isVisible, setVisibility] = useState(false);
-  const [isApproved, setApproved] = useState(true);
+  // const [firstName, setFirstName] = useState("Ali");
+  // const [lastName, setLastName] = useState("OD");
+  // if we want to show the fullName. we don't need to use another State fullName because this will be redundant.
+  // we can just use it like this.
+  //const fullName = firstName + " " + lastName;
+  // sometimes our state variables are related, in those cases is better to group them in a single object.
+  const [isLoading, setLoading] = useState(false);
+  // the first and second state variables are related. we can create an object person and wrap theme into it.
+  // we will comment fist and second state variables here and the fullName variable too.
 
-  const handleClick = () => {
-    setVisibility(true);
-    console.log(isVisible);
-  };
+  const [person, setPerson] = useState({
+    firstName: "Ali",
+    lastName: "OD",
+    // we should avoid deeply nested structure like this.
+    contact: {
+      address: {
+        street: "",
+      },
+    },
+    // because is difficult to update an object with this structure.
+    // we prefer a flat structure.
+    // Best Practices :
+    // - Avoid redundant state variables
+    // - Group related variables inside an object
+    // - Avoid deeply nested structures
+  });
 
   return (
     <div>
-      <button onClick={handleClick}>Show</button>
+      {/* without variable */}
+      {/* firstName} {lastName*/}
+      <br />
+      {/* with variable*/}
+      {/* fullName */}
+      {/* object variable*/}
+      {person.firstName} {person.lastName}
     </div>
   );
 }
