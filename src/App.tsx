@@ -4,21 +4,20 @@
 import { useState } from "react";
 
 function App() {
-  // 2- State is stored outside of components
-
+  // 3- Use hooks at the top level of your Component
+  // we use State Hook to declare and initialize to Booleans Variables.
+  // these name (isVisible, isApproved) are local identifiers in this function.
+  // React is unaware of them .
+  // when we use State Hook we tell react we want to store 2 Booleans values.
+  // React will store somewhere and most likely like this [false, true]
+  // next time we re-render this component. React will grab false and assign it to isVisible and true to isApproved.
+  // this is why we can't use State Hook inside if statement or for loops or nested functions
+  // React keeps the state in memory as longer is the component is visible in the screen.
   const [isVisible, setVisibility] = useState(false);
-  // if we declare a variable
-  let count = 0;
-  // this is a scooped variable
-  // every time we call App component the variable count will initialize to 0
-  // this is why we use state hook to store the state outside of this component
-  // for some where React will store all the states variables for this component.
-  // and React automaticly remove this variables if the component is no longer visible in the screen.
+  const [isApproved, setApproved] = useState(true);
 
   const handleClick = () => {
     setVisibility(true);
-    // this update will be lost
-    count++;
     console.log(isVisible);
   };
 
