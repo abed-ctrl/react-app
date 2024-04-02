@@ -1,40 +1,41 @@
-// 05 - Managing Component State => Updating Objects
+// 05 - Managing Component State => Updating Nested Objects
 
 import { useState } from "react";
 
 function App() {
-  const [drink, setDrink] = useState({
-    title: "Express",
-    price: 10,
+  const [customer, setCustomer] = useState({
+    name: "Ali",
+    address: {
+      city: "Oued Zem",
+      zipCode: 25350,
+    },
   });
 
+  // we wanna update the zip code when handling the click event
   const handleClick = () => {
-    // in this event handler we don't modify the props of this object like this
-    // drink.price = 6
-    // setDrink(drink);
-    // this will not work. react not detect any changes.
-    // so if we want React to detect the changes we should pass a new object.
-    // const newDrink = {
-    //  title: drink.title,
-    //  price: 12,
-    // };
-    // setDrink(newDrink);
-    // just like props we should treat state object as immutable or read-only
-    // if we have an object with a ton of props we can't recopy them all.
-    // we use the spread operator in javascript ...
-    const newDrink = {
-      ...drink,
-      price: 12,
-    };
-    setDrink(newDrink);
-    // we can create the object inside setDrink directly
-    // setDrink({ ...drink, price: 12 });
+    // setCustomer({ ...customer });
+    // the spread operator in js is shallow.
+    // the cloned object refers to the same reference as the original object.
+    // if we create two customers with the spread operator we will get 2 customer with the same address.
+    // this isn't what we want. we should make the two object independently of each other.
+    setCustomer({
+      ...customer,
+      address: { ...customer.address, zipCode: 25000 },
+    });
+    // the address object of the first customer object is independently of address object of the second customer object
+
+    // Definitions:
+
+    // Shallow copy is a bit-wise copy of an object which makes a new object by copying the memory address
+    // of the original object.That is, it makes a new object by which memory addresses are the same as
+    // the original object.
+
+    // Deep copy, copies all the fields with dynamically allocated memory. That is, every value of the copied
+    //  object gets a new memory address rather than the original object.
   };
   return (
     <div>
-      {drink.price}
-      {/* we want when we click on this button to update the price. */}
-      {/* when dealing with array and object we should treat them as immutable or read-only */}
+      {customer.address.zipCode}
       <button onClick={handleClick}>Click Me</button>
     </div>
   );
