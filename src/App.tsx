@@ -1,32 +1,27 @@
-// 05 - Managing Component State => Updating Array
+// 05 - Managing Component State => Updating Array of Objects
 
 import { useState } from "react";
 
 function App() {
-  const [tags, setTags] = useState(["happy", "cheerful"]);
+  const [bugs, setBugs] = useState([
+    { id: 1, title: "Bug 1", fixed: false },
+    { id: 2, title: "Bug 2", fixed: false },
+  ]);
 
-  const addClick = () => {
-    // as the same of objects. we can't modify the original Array
-    // tags.push('grateful')
-    // we create a new Array
-    // add
-    setTags([...tags, "exciting"]);
-  };
-  const removeClick = () => {
-    // remove
-    setTags(tags.filter((tag) => tag !== "cheerful"));
-  };
   const updateClick = () => {
-    // update
-    // we can create a new array and modify the element or we use the map method
-    setTags(tags.map((tag) => (tag === "happy" ? "Happiness" : tag)));
+    // update the bug 1 status to  true
+    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    // we will not create new object for all the array. just the object we will change.
   };
   return (
     <div>
-      {tags.join(" ")}
-      <button onClick={addClick}>Add Me</button>
+      {bugs.map((bug) => (
+        <div key={bug.id}>
+          <p>Title: {bug.title}</p>
+          <p>Fixed: {bug.fixed ? "Yes" : "No"}</p>
+        </div>
+      ))}
       <button onClick={updateClick}>Update Me</button>
-      <button onClick={removeClick}>Remove Me</button>
     </div>
   );
 }
