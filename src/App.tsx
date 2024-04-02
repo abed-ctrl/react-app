@@ -1,27 +1,41 @@
-// 05 - Managing Component State => Understanding the Strict Mode
-// Strict mode helps us catch potential problems such as impure components.
-// Starting from React 18, it is enabled by default. It renders our components twice in development
-// mode to detect any potential side effects.
-// the Strict mode is inside main.tsx => <React.StrictMode>
-// this how react render Message App
-// <Message />  Message 1 the first render for detecting and reporting potential issues with our code
-//              Message 2 the second is to render the user interface
-// <Message />  Message 3
-//              Message 4
-// <Message />  Message 5
-//              Message 6
+// 05 - Managing Component State => Updating Objects
 
-// this is why we get : Message 2 Message 4 Message 6
-
-import Message from "./Message";
+import { useState } from "react";
 
 function App() {
+  const [drink, setDrink] = useState({
+    title: "Express",
+    price: 10,
+  });
+
+  const handleClick = () => {
+    // in this event handler we don't modify the props of this object like this
+    // drink.price = 6
+    // setDrink(drink);
+    // this will not work. react not detect any changes.
+    // so if we want React to detect the changes we should pass a new object.
+    // const newDrink = {
+    //  title: drink.title,
+    //  price: 12,
+    // };
+    // setDrink(newDrink);
+    // just like props we should treat state object as immutable or read-only
+    // if we have an object with a ton of props we can't recopy them all.
+    // we use the spread operator in javascript ...
+    const newDrink = {
+      ...drink,
+      price: 12,
+    };
+    setDrink(newDrink);
+    // we can create the object inside setDrink directly
+    // setDrink({ ...drink, price: 12 });
+  };
   return (
     <div>
-      <Message />
-      {/* we will remove the 2 last Message to see better the effect of strict mode */}
-      {/* <Message />
-      <Message /> */}
+      {drink.price}
+      {/* we want when we click on this button to update the price. */}
+      {/* when dealing with array and object we should treat them as immutable or read-only */}
+      <button onClick={handleClick}>Click Me</button>
     </div>
   );
 }
