@@ -1,6 +1,11 @@
-// 05 - Managing Component State => Updating Array of Objects
+// 05 - Managing Component State => Simplifying Update Logic with Immer
+// installing Immer => npm i immer@9.0.19
+// we will use the same code of the previous lesson
+// Immer is a library that can help us update objects and arrays in a more concise and mutable way
 
 import { useState } from "react";
+// import produce from Immer Library
+import produce from "immer";
 
 function App() {
   const [bugs, setBugs] = useState([
@@ -10,8 +15,17 @@ function App() {
 
   const updateClick = () => {
     // update the bug 1 status to  true
-    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
-    // we will not create new object for all the array. just the object we will change.
+    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+
+    // draft is a proxy object that records the changes we will gonna apply to the bugs array
+    // imagine that the draft is a copy of bugs array. so we are free to mutate or modify it.
+    // we don't need to map anything or doing map.
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) bug.fixed = true;
+      })
+    );
   };
   return (
     <div>
